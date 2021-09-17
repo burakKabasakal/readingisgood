@@ -1,6 +1,7 @@
 package com.getir.readingisgood.service;
 
 import com.getir.readingisgood.dto.order.AddOrderDto;
+import com.getir.readingisgood.dto.statistic.StatisticDto;
 import com.getir.readingisgood.model.Order;
 
 import java.math.BigDecimal;
@@ -21,6 +22,5 @@ public interface OrderService {
 
     BigDecimal totalAmountOfOrders(String customerId);
 
-
-
+    List<StatisticDto> monthlyOrderStatisticsForCustomer(String customerId);
 }

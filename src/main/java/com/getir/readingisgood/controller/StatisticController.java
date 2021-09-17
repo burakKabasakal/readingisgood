@@ -1,12 +1,13 @@
 package com.getir.readingisgood.controller;
 
+import com.getir.readingisgood.dto.statistic.StatisticDto;
+import com.getir.readingisgood.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -15,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/statistics")
 public class StatisticController {
 
-    @GetMapping("/orderCount")
-    public ResponseEntity<?> totalOrderCount(){
+    private final OrderService orderService;
 
-        return ResponseEntity.ok("asdasd");
+    @PostMapping("order/{customerId}")
+    public ResponseEntity<List<StatisticDto>> findCustomerMonthlyStatistics(@PathVariable String customerId){
+        return ResponseEntity.ok(orderService.monthlyOrderStatisticsForCustomer(customerId));
     }
 
 }

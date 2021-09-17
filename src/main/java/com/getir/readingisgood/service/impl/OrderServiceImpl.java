@@ -1,6 +1,7 @@
 package com.getir.readingisgood.service.impl;
 
 import com.getir.readingisgood.dto.order.AddOrderDto;
+import com.getir.readingisgood.dto.statistic.StatisticDto;
 import com.getir.readingisgood.enums.OrderState;
 import com.getir.readingisgood.model.Book;
 import com.getir.readingisgood.model.Customer;
@@ -68,6 +69,11 @@ public class OrderServiceImpl implements OrderService {
         Pageable paging = PageRequest.of(pageNo, pageSize);
         Page<Order> orderPage = orderRepository.findByCustomerIdAndOrderState(customerId, paging, OrderState.APPROVED);
         return orderPage.isEmpty() ? Collections.emptyList() : orderPage.getContent();
+    }
+
+    @Override
+    public List<StatisticDto> monthlyOrderStatisticsForCustomer(String customerId) {
+        return orderRepository.monthlyOrderStatisticsForCustomer(customerId,OrderState.APPROVED);
     }
 
     @Override
