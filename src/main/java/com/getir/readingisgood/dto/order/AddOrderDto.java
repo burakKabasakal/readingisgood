@@ -18,7 +18,6 @@ public class AddOrderDto {
     @NotNull(message = "Book id cannot be null")
     private String bookId;
 
-    @NotEmpty(message = "Count may not be empty")
     @Min(value = 1, message = "Amount should not be less than 1")
     private Integer count;
 }
